@@ -1,0 +1,94 @@
+rm -f fsw_efi.o
+make DRIVERNAME=ext2 -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=ext2 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_core.c -o fsw_core.o
+/usr/bin/gcc -DFSTYPE=ext2 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=ext2 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi_lib.c -o fsw_efi_lib.o
+/usr/bin/gcc -DFSTYPE=ext2 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_lib.c -o fsw_lib.o
+/usr/bin/gcc -DFSTYPE=ext2 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_ext2.c -o fsw_ext2.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_ext2.o -o ext2_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 ext2_ia32.so ext2_ia32.efi
+chmod a-x ext2_ia32.efi
+mkdir -p ../drivers_ia32
+cp ext2_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
+rm -f fsw_efi.o
+make DRIVERNAME=ext4 -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=ext4 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=ext4 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_ext4.c -o fsw_ext4.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_ext4.o -o ext4_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 ext4_ia32.so ext4_ia32.efi
+chmod a-x ext4_ia32.efi
+mkdir -p ../drivers_ia32
+cp ext4_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
+rm -f fsw_efi.o
+make DRIVERNAME=reiserfs -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=reiserfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=reiserfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_reiserfs.c -o fsw_reiserfs.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_reiserfs.o -o reiserfs_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 reiserfs_ia32.so reiserfs_ia32.efi
+chmod a-x reiserfs_ia32.efi
+mkdir -p ../drivers_ia32
+cp reiserfs_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
+rm -f fsw_efi.o
+make DRIVERNAME=iso9660 -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=iso9660 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=iso9660 -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_iso9660.c -o fsw_iso9660.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_iso9660.o -o iso9660_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 iso9660_ia32.so iso9660_ia32.efi
+chmod a-x iso9660_ia32.efi
+mkdir -p ../drivers_ia32
+cp iso9660_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
+rm -f fsw_efi.o
+make DRIVERNAME=hfs -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=hfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=hfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_hfs.c -o fsw_hfs.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_hfs.o -o hfs_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 hfs_ia32.so hfs_ia32.efi
+chmod a-x hfs_ia32.efi
+mkdir -p ../drivers_ia32
+cp hfs_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
+rm -f fsw_efi.o
+make DRIVERNAME=btrfs -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=btrfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=btrfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_btrfs.c -o fsw_btrfs.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_btrfs.o -o btrfs_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 btrfs_ia32.so btrfs_ia32.efi
+chmod a-x btrfs_ia32.efi
+mkdir -p ../drivers_ia32
+cp btrfs_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
+rm -f fsw_efi.o
+make DRIVERNAME=ntfs -f Make.gnuefi
+make[1]: Entering directory `/other/nessus/programming/refind/current/filesystems'
+/usr/bin/gcc -DFSTYPE=ntfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_efi.c -o fsw_efi.o
+/usr/bin/gcc -DFSTYPE=ntfs -m32 -malign-double -I. -I./../include -I./../libeg -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I../include -I../refind -I../libeg -DCONFIG_ia32 -D__MAKEWITH_GNUEFI -DEFI32 -malign-double   -O2 -fno-strict-aliasing -fno-stack-protector -fpic -fshort-wchar -Wall -c fsw_ntfs.c -o fsw_ntfs.o
+/usr/bin/ld   -T /usr/lib/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib /usr/lib/crt0-efi-ia32.o fsw_core.o fsw_efi.o fsw_efi_lib.o fsw_lib.o fsw_ntfs.o -o ntfs_ia32.so  -lefi -lgnuefi /usr/lib/gcc/i686-linux-gnu/4.8/libgcc.a
+/usr/bin/objcopy -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel \
+	           -j .rela -j .rel.* -j .rela.* -j .rel* -j .rela* \
+		   -j .reloc --target=efi-bsdrv-ia32 ntfs_ia32.so ntfs_ia32.efi
+chmod a-x ntfs_ia32.efi
+mkdir -p ../drivers_ia32
+cp ntfs_ia32.efi ../drivers_ia32
+make[1]: Leaving directory `/other/nessus/programming/refind/current/filesystems'
